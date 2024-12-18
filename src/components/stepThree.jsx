@@ -1,18 +1,7 @@
 "use client";
 import { useState } from "react";
 
-function FormInputs() {
-  return (
-    <div>
-      <input
-        type="text"
-        className="w-[416px] h-[44px] rounded-[8px] border placeholder:italic placeholder-gray-200"
-      ></input>
-    </div>
-  );
-}
-
-export function StepTwo({ setCurrentStep }) {
+export function StepThree({ setCurrentStep }) {
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
       <main className="w-[480px] h-[655px] rounded-[8px] bg-[#ffffff] flex flex-col gap-2 pl-[30px] pt-[20px]">
@@ -31,36 +20,43 @@ export function StepTwo({ setCurrentStep }) {
             Please provide all current information accurately
           </p>
         </div>
-        <div className="flex flex-col gap-[12px] mt-[12px]">
+        <div className="flex flex-col gap-[12px] mt-[12px] ">
           <div>
-            Email:
-            <FormInputs />
-          </div>
-          <div>
-            Phone number:
-            <FormInputs />
-          </div>
-          <div>
-            Password:
-            <FormInputs />
-          </div>
-          <div>
-            Confirm password:
-            <FormInputs />
+            <div>
+              Date of birth:
+              <input
+                type="date"
+                className="w-[416px] h-[44px] rounded-[8px] border placeholder:italic placeholder-gray-200::Firstname"
+              />
+            </div>
+            <div className="flex flex-col mt-[12px]">
+              <span>Profile:</span>
+              <input type="file" id="file" className="hidden" />
+              <label
+                htmlFor="file"
+                className="w-[416px] h-[180px] rounded-md bg-[#7F7F800D] items-center justify-center text-black flex flex-col"
+              >
+                <img
+                  className="w-[24px] h-[24px] font-[500] text-[14px]"
+                  src="profile.png"
+                ></img>
+                Add image
+              </label>
+            </div>
           </div>
         </div>
         <div className="flex justify-center gap-[16px] mt-auto mb-[32px] mr-[24px]">
           <button
             className="w-[120px] h-[44px] bg-[white] rounded-[6px] text-[black] border-[1px] border-[#CBD5E1]"
-            onClick={() => setCurrentStep(1)}
+            onClick={() => setCurrentStep(2)}
           >
             Back
           </button>
           <button
             className="w-[280px] h-[44px] bg-[#202124] rounded-[6px] text-[white]"
-            onClick={() => setCurrentStep(3)}
+            onClick={() => setCurrentStep(4)}
           >
-            Continue 2/3
+            Submit 3/3
           </button>
         </div>
       </main>
