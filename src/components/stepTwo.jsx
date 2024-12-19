@@ -1,16 +1,6 @@
 "use client";
 import { useState } from "react";
-
-function FormInputs() {
-  return (
-    <div>
-      <input
-        type="text"
-        className="w-[416px] h-[44px] rounded-[8px] border placeholder:italic placeholder-gray-200"
-      ></input>
-    </div>
-  );
-}
+import { FormInputs } from "./FormInputs";
 
 export function StepTwo({ setCurrentStep }) {
   return (

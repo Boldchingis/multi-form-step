@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-
 export function StepThree({ setCurrentStep }) {
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">

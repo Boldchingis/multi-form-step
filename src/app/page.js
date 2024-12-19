@@ -1,14 +1,19 @@
 "use client";
-import Image from "next/image";
+import { useState } from "react";
 import { StepOne } from "@/components/stepOne";
 import { StepTwo } from "@/components/stepTwo";
 import { StepThree } from "@/components/stepThree";
 import { StepFour } from "@/components/stepFour";
-import { useState } from "react";
 
-const FormBody = ({ currentStep, setCurrentStep }) => {
+const FormBody = ({ currentStep, setCurrentStep, form, onChange }) => {
   if (currentStep === 1) {
-    return <StepOne setCurrentStep={setCurrentStep} />;
+    return (
+      <StepOne
+        setCurrentStep={setCurrentStep}
+        form={form}
+        onChange={onChange}
+      />
+    );
   }
   if (currentStep === 2) {
     return <StepTwo setCurrentStep={setCurrentStep} />;
@@ -26,11 +31,21 @@ export default function Home() {
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
+    username: "",
   });
 
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
+
   return (
-    <div className="">
-      <FormBody setCurrentStep={setCurrentStep} currentStep={currentStep} />
+    <div>
+      <FormBody
+        setCurrentStep={setCurrentStep}
+        currentStep={currentStep}
+        form={form}
+        onChange={onChange}
+      />
     </div>
   );
 }
