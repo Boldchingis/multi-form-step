@@ -5,13 +5,22 @@ import { StepTwo } from "@/components/stepTwo";
 import { StepThree } from "@/components/stepThree";
 import { StepFour } from "@/components/stepFour";
 
-const FormBody = ({ currentStep, setCurrentStep, form, onChange }) => {
+const FormBody = ({
+  currentStep,
+  setCurrentStep,
+  form,
+  onChange,
+  setErrors,
+  errors,
+}) => {
   if (currentStep === 1) {
     return (
       <StepOne
         setCurrentStep={setCurrentStep}
         form={form}
         onChange={onChange}
+        setErrors={setErrors}
+        errors={errors}
       />
     );
   }
@@ -33,6 +42,11 @@ export default function Home() {
     lastName: "",
     username: "",
   });
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+  });
 
   const onChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -45,6 +59,8 @@ export default function Home() {
         currentStep={currentStep}
         form={form}
         onChange={onChange}
+        errors={errors}
+        setErrors={setErrors}
       />
     </div>
   );

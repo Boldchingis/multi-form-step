@@ -1,6 +1,7 @@
 "use client";
+import { validateStepOne } from "@/app/utils/validate";
 import { FormInputs } from "./FormInputs";
-export function StepOne({ setCurrentStep, form, onChange }) {
+export function StepOne({ setCurrentStep, form, onChange, errors, setErrors }) {
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
       <main className="w-[480px] h-[655px] rounded-[8px] bg-[#ffffff] flex flex-col gap-2 pl-[30px] pt-[20px]">
@@ -28,6 +29,8 @@ export function StepOne({ setCurrentStep, form, onChange }) {
                 name="firstName"
                 value={form?.firstName}
                 onChange={onChange}
+                error={errors?.firstName}
+                setErrors={setErrors}
               />
             </div>
             <div>
@@ -37,6 +40,8 @@ export function StepOne({ setCurrentStep, form, onChange }) {
                 name="lastName"
                 value={form?.lastName}
                 onChange={onChange}
+                error={errors?.lastName}
+                setErrors={setErrors}
               />
             </div>
             <div>
@@ -46,6 +51,8 @@ export function StepOne({ setCurrentStep, form, onChange }) {
                 name="username"
                 value={form?.username}
                 onChange={onChange}
+                error={errors?.username}
+                setErrors={setErrors}
               />
             </div>
           </div>
@@ -53,8 +60,11 @@ export function StepOne({ setCurrentStep, form, onChange }) {
         <button
           className="w-[416px] h-[44px] bg-[#202124] rounded-[6px] mt-[auto] mb-[32px] text-[white]"
           onClick={() => {
-            console.log(form);
-            setCurrentStep(2);
+            const { isValid, newErrors } = validateStepOne(form);
+            setErrors(newErrors);
+            if (isValid) {
+              setCurrentStep(2);
+            }
           }}
         >
           Continue 1/3
