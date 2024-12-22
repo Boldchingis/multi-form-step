@@ -25,7 +25,12 @@ const FormBody = ({
     );
   }
   if (currentStep === 2) {
-    return <StepTwo setCurrentStep={setCurrentStep} />;
+    return <StepTwo 
+    setCurrentStep={setCurrentStep}
+    form={form}
+    onChange={onChange}
+    setErrors={setErrors}
+    errors={errors} />;
   }
   if (currentStep === 3) {
     return <StepThree setCurrentStep={setCurrentStep} />;

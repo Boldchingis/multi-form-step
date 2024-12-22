@@ -24,7 +24,10 @@ export function StepTwo({ setCurrentStep }) {
         <div className="flex flex-col gap-[12px] mt-[12px]">
           <div>
             Email:
-            <FormInputs />
+            <FormInputs 
+            id="email"
+            name="email"
+            value={FormInputs.email} />
           </div>
           <div>
             Phone number:
