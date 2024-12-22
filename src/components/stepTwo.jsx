@@ -1,8 +1,8 @@
-"use client";
 import { useState } from "react";
+import { validateStepTwo } from "@/app/utils/validate";
 import { FormInputs } from "./FormInputs";
 
-export function StepTwo({ setCurrentStep }) {
+export function StepTwo({ setCurrentStep, form, onChange, errors, setErrors }) {
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
       <main className="w-[480px] h-[655px] rounded-[8px] bg-[#ffffff] flex flex-col gap-2 pl-[30px] pt-[20px]">
@@ -11,7 +11,7 @@ export function StepTwo({ setCurrentStep }) {
             className="w-[60px] h-[60px]"
             src="logo-removebg.png"
             alt="Logo"
-          ></img>
+          />
         </div>
         <div className="flex flex-col gap-[8px]">
           <h2 className="text-[26px] leading-[31.47px] font-[600]">
@@ -24,22 +24,43 @@ export function StepTwo({ setCurrentStep }) {
         <div className="flex flex-col gap-[12px] mt-[12px]">
           <div>
             Email:
-            <FormInputs 
-            id="email"
-            name="email"
-            value={FormInputs.email} />
+            <FormInputs
+              id="email"
+              name="email"
+              value={form?.email}
+              onChange={onChange}
+              error={errors?.email}
+            />
           </div>
           <div>
             Phone number:
-            <FormInputs />
+            <FormInputs
+              id="phoneNumber"
+              name="phoneNumber"
+              value={form?.phoneNumber}
+              onChange={onChange}
+              error={errors?.phoneNumber}
+            />
           </div>
           <div>
             Password:
-            <FormInputs />
+            <FormInputs
+              id="password"
+              name="password"
+              value={form?.password}
+              onChange={onChange}
+              error={errors?.password}
+            />
           </div>
           <div>
             Confirm password:
-            <FormInputs />
+            <FormInputs
+              id="confirmPassword"
+              name="confirmPassword"
+              value={form?.confirmPassword}
+              onChange={onChange}
+              error={errors?.confirmPassword}
+            />
           </div>
         </div>
         <div className="flex justify-center gap-[16px] mt-auto mb-[32px] mr-[24px]">
@@ -51,7 +72,13 @@ export function StepTwo({ setCurrentStep }) {
           </button>
           <button
             className="w-[280px] h-[44px] bg-[#202124] rounded-[6px] text-[white]"
-            onClick={() => setCurrentStep(3)}
+            onClick={() => {
+              const { isValid, newErrors } = validateStepTwo(form);
+              setErrors(newErrors);
+              if (isValid) {
+                setCurrentStep(3);
+              }
+            }}
           >
             Continue 2/3
           </button>

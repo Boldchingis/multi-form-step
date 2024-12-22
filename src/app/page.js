@@ -25,15 +25,19 @@ const FormBody = ({
     );
   }
   if (currentStep === 2) {
-    return <StepTwo 
+    return ( <StepTwo 
     setCurrentStep={setCurrentStep}
     form={form}
     onChange={onChange}
     setErrors={setErrors}
-    errors={errors} />;
+    errors={errors} /> );
   }
   if (currentStep === 3) {
-    return <StepThree setCurrentStep={setCurrentStep} />;
+    return( <StepThree   setCurrentStep={setCurrentStep}
+      form={form}
+      onChange={onChange}
+      setErrors={setErrors}
+      errors={errors} />);
   }
   if (currentStep === 4) {
     return <StepFour setCurrentStep={setCurrentStep} />;
@@ -46,11 +50,19 @@ export default function Home() {
     firstName: "",
     lastName: "",
     username: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
   });
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
     username: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const onChange = (e) => {

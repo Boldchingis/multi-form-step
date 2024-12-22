@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-export function StepThree({ setCurrentStep }) {
+import { validateStepThree } from "@/app/utils/validate";
+
+export function StepThree({ setCurrentStep, form, onChange, errors, setErrors, error }) {
   return (
     <div className="bg-gray-100 w-full h-screen flex justify-center items-center">
       <main className="w-[480px] h-[655px] rounded-[8px] bg-[#ffffff] flex flex-col gap-2 pl-[30px] pt-[20px]">
@@ -9,7 +11,7 @@ export function StepThree({ setCurrentStep }) {
             className="w-[60px] h-[60px]"
             src="logo-removebg.png"
             alt="Logo"
-          ></img>
+          />
         </div>
         <div className="flex flex-col gap-[8px]">
           <h2 className="text-[26px] leading-[31.47px] font-[600]">
@@ -19,18 +21,28 @@ export function StepThree({ setCurrentStep }) {
             Please provide all current information accurately
           </p>
         </div>
-        <div className="flex flex-col gap-[12px] mt-[12px] ">
+        <div className="flex flex-col gap-[12px] mt-[12px]">
           <div>
             <div>
               Date of birth:
               <input
                 type="date"
-                className="w-[416px] h-[44px] rounded-[8px] border placeholder:italic placeholder-gray-200::Firstname"
+                className="w-[416px] h-[44px] rounded-[8px] border placeholder:italic placeholder-gray-200"
+                id="DateOfBirth"
+                name="DateOfBirth"
+                value={form?.DateOfBirth}
+                onChange={onChange}
               />
+              {errors?.DateOfBirth && <span className="text-red-600">{errors.DateOfBirth}</span>}
             </div>
             <div className="flex flex-col mt-[12px]">
               <span>Profile:</span>
-              <input type="file" id="file" className="hidden" />
+              <input
+                type="file"
+                id="file"
+                className="hidden"
+                onChange={onChange}
+              />
               <label
                 htmlFor="file"
                 className="w-[416px] h-[180px] rounded-md bg-[#7F7F800D] items-center justify-center text-black flex flex-col"
@@ -38,9 +50,11 @@ export function StepThree({ setCurrentStep }) {
                 <img
                   className="w-[24px] h-[24px] font-[500] text-[14px]"
                   src="profile.png"
-                ></img>
+                  alt="Profile image"
+                />
                 Add image
               </label>
+              {errors?.profileImage && <span className="text-red-600">{errors.profileImage}</span>}
             </div>
           </div>
         </div>
@@ -53,7 +67,13 @@ export function StepThree({ setCurrentStep }) {
           </button>
           <button
             className="w-[280px] h-[44px] bg-[#202124] rounded-[6px] text-[white]"
-            onClick={() => setCurrentStep(4)}
+            onClick={() => {
+              const { isValid, newErrors } = validateStepThree(form);
+              setErrors(newErrors);
+              if (isValid) {
+                setCurrentStep(4);
+              }
+            }}
           >
             Submit 3/3
           </button>
