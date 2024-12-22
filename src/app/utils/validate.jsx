@@ -42,7 +42,10 @@ export const validateStepTwo = (form) => {
   if (form.password === "") {
     isValid = false;
     newErrors.password = "Password is required!";
-  }
+  } else if (form.password.length < 8) {
+    isValid = false;
+    newErrors.password = "Password must be at least 8 characters!";
+  } 
   if (form.confirmPassword !== form.password) {
     isValid = false;
     newErrors.confirmPassword = "Passwords do not match!";
@@ -50,6 +53,7 @@ export const validateStepTwo = (form) => {
 
   return { isValid, newErrors };
 };
+
 export const validateStepThree = (form) => {
   let isValid = true;
   let newErrors = {
