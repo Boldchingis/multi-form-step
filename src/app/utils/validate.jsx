@@ -76,17 +76,15 @@ export const validateStepThree = (form) => {
     profileImage: "",
   };
 
-
   if (!form.DateOfBirth) {
     isValid = false;
     newErrors.DateOfBirth = "Date of Birth is required!";
   }
 
-
-  if (!form.profileImage) {
-    isValid = false;
-    newErrors.profileImage = "Profile image is required!";
-  }
+  // if (!form.profileImage || form.profileImage === "") {  
+  //   isValid = false;
+  //   newErrors.profileImage = "Profile image is required!";
+  // }
 
   return { isValid, newErrors };
 };
